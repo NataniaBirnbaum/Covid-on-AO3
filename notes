@@ -1,0 +1,32 @@
+pandemic date range: jan 22 2020 (start of CSSE data) - feb 26 2021 (end of AO3 data)
+
+Work csv fields:
+creation date,language,restricted,complete,word_count,tags, (only $1, $6 needed)
+Tag csv fields:
+id,type,name,canonical,cached_count,merger_id
+
+Step 1: findtags.awk generates list of relevant tag ids
+takes: tags.csv, keywords
+makes: taglist
+
+Step 2: findfics.awk generates histogram of relevant works created per day
+takes: taglist, works.csv
+makes: ficlist
+
+Step 3: caseHisto.awk generates histogram of total COVID cases per day
+takes: time-series.csv
+makes: covidCases
+
+Step 4: setrange.py trims both histograms to relevant date range (can be adjusted)
+takes: ficlist, covidCases
+makes: ficData, caseData
+
+Step 5: plot.py generates pdf with line graph
+takes: ficData, caseData
+makes: plot.pdf
+
+Step 6:
+???
+
+Step 7:
+Profit
